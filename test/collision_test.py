@@ -11,7 +11,7 @@ def main():
     # Wait for the first heartbeat
     the_connection.wait_heartbeat()
     print("Heartbeat from system (system %u component %u)" % (the_connection.target_system, the_connection.target_system))
-
+    collision = False
 
     while True:
         msg = the_connection.recv_match(type='HEARTBEAT',blocking=False)
@@ -22,8 +22,9 @@ def main():
         if (custom_mode == 67371008 and base_mode == 157):
             # Mission Flight Mode
             msg = the_connection.recv_match(type='COLLISION',blocking=False)
-            if msg:
-                print "\033[91m Error: The vehicle has crashed into an obstacle \033[0m"
+            if (msg and (collision == False)):
+                print '\033[91m' + "!!!!!!!!!!!Error: The vehicle has crashed into an obstacle!!!!!!!!!!" + '\033[0m'
+                collision = True
 
 
 
