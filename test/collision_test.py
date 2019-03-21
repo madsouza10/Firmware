@@ -22,7 +22,7 @@ def main():
         if (custom_mode == 67371008 and base_mode == 157):
             # Mission Flight Mode
             msg = the_connection.recv_match(type='COLLISION',blocking=False)
-            if (msg and (collision == False)):
+            if msg:
                 print '\033[91m' + "!!!!!!!!!!!Error: The vehicle has crashed into an obstacle!!!!!!!!!!" + '\033[0m'
                 collision = True
 
